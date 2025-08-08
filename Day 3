@@ -1,0 +1,306 @@
+mysql> use db;
+Database changed
+mysql> select * from orders;
+Empty set (0.01 sec)
+
+mysql> INSERT INTO orders (customer_name, product_name, order_date, quantity, price, status, shipping_address) VALUES
+    -> ('Alice', 'Laptop', '2025-08-07 09:00:00', 1, 1200.00, 'shipped', '123 Main St, New York'),
+    -> ('Bob', 'Phone', '2025-08-06 14:10:00', 2, 650.50, 'pending', '456 Elm St, LA'),
+    -> ('Charlie', 'Tablet', '2025-08-05 11:25:00', 1, 300.00, 'cancelled', NULL),
+    -> ('Diana', 'Monitor', '2025-08-07 15:40:00', 3, 199.99, 'shipped', '789 Pine St, Chicago'),
+    -> ('Ethan', 'Keyboard', '2025-08-03 08:20:00', 5, 49.99, 'processing', NULL),
+    -> ('Fiona', 'Mouse', '2025-08-04 10:30:00', 4, 25.00, 'shipped', '321 Oak St, Houston');
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> remove;
+ERROR 1054 (42S22): Unknown column 'remove' in 'field list'
+mysql> select * from orders;
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status     | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped    | 123 Main St, New York |
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 |  650.50 | pending    | 456 Elm St, LA        |
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 |  300.00 | cancelled  | NULL                  |
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 |  199.99 | shipped    | 789 Pine St, Chicago  |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |   49.99 | processing | NULL                  |
+|        6 | Fiona         | Mouse        | 2025-08-04 10:30:00 |        4 |   25.00 | shipped    | 321 Oak St, Houston   |
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select customer_name from orders where customer_name like'%a';
++---------------+
+| customer_name |
++---------------+
+| Diana         |
+| Fiona         |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> select
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    ->
+    -> select
+    -> select ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select
+select' at line 14
+mysql> select * from orders where product_name = 'phone';
++----------+---------------+--------------+---------------------+----------+--------+---------+------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price  | status  | shipping_address |
++----------+---------------+--------------+---------------------+----------+--------+---------+------------------+
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 | 650.50 | pending | 456 Elm St, LA   |
++----------+---------------+--------------+---------------------+----------+--------+---------+------------------+
+1 row in set (0.00 sec)
+
+mysql> select product_name from orders where length(product_name) = 5;
++--------------+
+| product_name |
++--------------+
+| Phone        |
+| Mouse        |
++--------------+
+2 rows in set (0.00 sec)
+
+mysql> select customer_name as buyer, price as unit_price from orders;
++---------+------------+
+| buyer   | unit_price |
++---------+------------+
+| Alice   |    1200.00 |
+| Bob     |     650.50 |
+| Charlie |     300.00 |
+| Diana   |     199.99 |
+| Ethan   |      49.99 |
+| Fiona   |      25.00 |
++---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select order_id, quantity*price as total_cost from orders;
++----------+------------+
+| order_id | total_cost |
++----------+------------+
+|        1 |    1200.00 |
+|        2 |    1301.00 |
+|        3 |     300.00 |
+|        4 |     599.97 |
+|        5 |     249.95 |
+|        6 |     100.00 |
++----------+------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from order where customer_name is not bob;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where customer_name is not bob' at line 1
+mysql> select * from order where customer_name != 'bob';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where customer_name != 'bob'' at line 1
+mysql> select * from order where customer_name is not bob;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where customer_name is not bob' at line 1
+mysql> select * from order where customer_name <> 'bob';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where customer_name <> 'bob'' at line 1
+mysql> select * from orders where customer_name is not bob;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bob' at line 1
+mysql> select * from orders where customer_name != 'bob';
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status     | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped    | 123 Main St, New York |
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 |  300.00 | cancelled  | NULL                  |
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 |  199.99 | shipped    | 789 Pine St, Chicago  |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |   49.99 | processing | NULL                  |
+|        6 | Fiona         | Mouse        | 2025-08-04 10:30:00 |        4 |   25.00 | shipped    | 321 Oak St, Houston   |
++----------+---------------+--------------+---------------------+----------+---------+------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from status where status != 'shipped';
+ERROR 1146 (42S02): Table 'db.status' doesn't exist
+mysql> select * from orders where status != 'shipped';
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price  | status     | shipping_address |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 | 650.50 | pending    | 456 Elm St, LA   |
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 | 300.00 | cancelled  | NULL             |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |  49.99 | processing | NULL             |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where quantity > 2 and price < 500;
++----------+---------------+--------------+---------------------+----------+--------+------------+----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price  | status     | shipping_address     |
++----------+---------------+--------------+---------------------+----------+--------+------------+----------------------+
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 | 199.99 | shipped    | 789 Pine St, Chicago |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |  49.99 | processing | NULL                 |
+|        6 | Fiona         | Mouse        | 2025-08-04 10:30:00 |        4 |  25.00 | shipped    | 321 Oak St, Houston  |
++----------+---------------+--------------+---------------------+----------+--------+------------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where customer_name = 'alice' or status = 'shipped';
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status  | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped | 123 Main St, New York |
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 |  199.99 | shipped | 789 Pine St, Chicago  |
+|        6 | Fiona         | Mouse        | 2025-08-04 10:30:00 |        4 |   25.00 | shipped | 321 Oak St, Houston   |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where customer_name = 'alice' and status = 'shipped';
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status  | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped | 123 Main St, New York |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where status = 'pending' or status = 'processing';
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price  | status     | shipping_address |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 | 650.50 | pending    | 456 Elm St, LA   |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |  49.99 | processing | NULL             |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from orders where customer_name = 'diana' or customer_name = 'alice';
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status  | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped | 123 Main St, New York |
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 |  199.99 | shipped | 789 Pine St, Chicago  |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from orders where products in ('laptop','phone','tablet');
+ERROR 1054 (42S22): Unknown column 'products' in 'where clause'
+mysql> select * from orders where product_name in ('laptop','phone','tablet');
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status    | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped   | 123 Main St, New York |
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 |  650.50 | pending   | 456 Elm St, LA        |
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 |  300.00 | cancelled | NULL                  |
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where customer_name in ('alice','bob','charlie');
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status    | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped   | 123 Main St, New York |
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 |  650.50 | pending   | 456 Elm St, LA        |
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 |  300.00 | cancelled | NULL                  |
++----------+---------------+--------------+---------------------+----------+---------+-----------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where shipping_address is null;
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price  | status     | shipping_address |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+|        3 | Charlie       | Tablet       | 2025-08-05 11:25:00 |        1 | 300.00 | cancelled  | NULL             |
+|        5 | Ethan         | Keyboard     | 2025-08-03 08:20:00 |        5 |  49.99 | processing | NULL             |
++----------+---------------+--------------+---------------------+----------+--------+------------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from orders where shipping_address is not null;
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+| order_id | customer_name | product_name | order_date          | quantity | price   | status  | shipping_address      |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+|        1 | Alice         | Laptop       | 2025-08-07 09:00:00 |        1 | 1200.00 | shipped | 123 Main St, New York |
+|        2 | Bob           | Phone        | 2025-08-06 14:10:00 |        2 |  650.50 | pending | 456 Elm St, LA        |
+|        4 | Diana         | Monitor      | 2025-08-07 15:40:00 |        3 |  199.99 | shipped | 789 Pine St, Chicago  |
+|        6 | Fiona         | Mouse        | 2025-08-04 10:30:00 |        4 |   25.00 | shipped | 321 Oak St, Houston   |
++----------+---------------+--------------+---------------------+----------+---------+---------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select customer_name from orders where length(customer_name) > 5;
++---------------+
+| customer_name |
++---------------+
+| Charlie       |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select upper(customer_name) from orders;
++----------------------+
+| upper(customer_name) |
++----------------------+
+| ALICE                |
+| BOB                  |
+| CHARLIE              |
+| DIANA                |
+| ETHAN                |
+| FIONA                |
++----------------------+
+6 rows in set (0.00 sec)
+
+mysql> select lower(product_name) from orders;
++---------------------+
+| lower(product_name) |
++---------------------+
+| laptop              |
+| phone               |
+| tablet              |
+| monitor             |
+| keyboard            |
+| mouse               |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> select substr(product_name,1,2,3)from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',3)from orders' at line 1
+mysql> select substr(product_name,1,3)from orders;
++--------------------------+
+| substr(product_name,1,3) |
++--------------------------+
+| Lap                      |
+| Pho                      |
+| Tab                      |
+| Mon                      |
+| Key                      |
+| Mou                      |
++--------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select substr(product_name,1,3) as short_name from orders;
++------------+
+| short_name |
++------------+
+| Lap        |
+| Pho        |
+| Tab        |
+| Mon        |
+| Key        |
+| Mou        |
++------------+
+6 rows in set (0.00 sec)
+
+mysql>
